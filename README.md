@@ -4,7 +4,11 @@
 使用的是Vue2.0的基本API
 需要全局安装Vue脚手架
 
-## Pr![image](20220612-183805347 00_00_00-00_00_30.gif))oject setup
+![image]([TodoList/20220612-183805347 00_00_00-00_00_30.gif at master · abc1747232439/TodoList (github.com)](https://github.com/abc1747232439/TodoList/blob/master/20220612-183805347 00_00_00-00_00_30.gif))
+
+
+
+## Project setup
 
 ```
 npm install
