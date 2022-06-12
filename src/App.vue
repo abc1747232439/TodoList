@@ -4,7 +4,7 @@
       <div class="todo-wrap">
         <MyHeader @addTodo="addTodo"></MyHeader>  <!-- MyHeader.vue -->
         <MyList :todos="list" ></MyList>  <!-- MyList.vue -->
-        <MyFooter :list="list" @checkAll="checkAll" @clearTodo="clearTodo"></MyFooter> <!-- Myfooter.vue -->
+        <MyFooter :list="list"  @clearTodo="clearTodo"></MyFooter> <!-- Myfooter.vue -->
       </div>
     </div>
   </div>
@@ -48,6 +48,8 @@ export default {
     this.$bus.$on("checkTodo",this.checkTodo);
     let pubId = pubsub.subscribe("deleteTodo",this.deleteTodo);
     this.$bus.$on("updateTodo",this.updateTodo);
+    this.$bus.$on("checkAll",this.checkAll)
+    console.log(this);
   },
   beforeDestroy() {
     this.$bus.$off("checkTodo",this.checkTodo);
@@ -68,7 +70,7 @@ export default {
     deleteTodo(_,id){    /* 删除按钮 */
      this.list= this.list.filter(item=>item.id!==id);
     },
-    checkAll(isAll){                   /* 全选按钮 */
+    checkAll(isAll){                 /* 全选按钮 */
       this.list.forEach(item=>{
         item.completed=isAll;
       })
@@ -144,9 +146,6 @@ input {
     border: 1px solid #bd362f;
   }
   .btn-edit {
-    color: #fff;
-    background-color: skyblue;
-    border: 1px solid skyblue;
     margin-right: 5px;
   }
 

@@ -1,12 +1,15 @@
 <template>
   <div class="todo-footer" v-show="total">
           <label>
-            <input type="checkbox" :checked="isAll" @change="checkTodo"/>
+            <!-- <input type="checkbox" :checked="isAll" @change="checkTodo"/> -->
+            <!-- <input type="checkbox"  v-model="isAll"/> -->
+             <el-checkbox v-model="isAll"  ref="all"></el-checkbox>
             </label>
           <span>
             <span>已完成{{doneTotal}}</span> / 全部{{total}}
           </span>
-          <button class="btn btn-danger" @click="clear">清除已完成任务</button>
+         <!-- <button class="btn btn-danger" @click="clear">清除已完成任务</button> -->
+          <el-button type="danger" round @click.native="clear">清除已完成任务</el-button>
         </div>
 </template>
 
@@ -21,14 +24,19 @@ export default {
         doneTotal(){
             return this.list.filter(item=>item.completed).length;
         },
-        isAll(){
+        isAll:{
+          get(){
            return this.total === this.doneTotal;
+           },
+           set(val){
+               this.$bus.$emit("checkAll",val)
+           }
         }
     },
     methods: {
-        checkTodo(e){
-           this.$emit("checkAll",e.target.checked)
-        },
+        /* checkTodo(e){
+           this.$bus.$emit("checkAll",this.$refs.all.isChecked)
+        }, */
         clear(){
           this.$emit("clearTodo",this.list.filter((item)=>{
             return !item.completed

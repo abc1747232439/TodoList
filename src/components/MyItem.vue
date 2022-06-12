@@ -2,12 +2,15 @@
       <transition name="todo" appear>
          <li>
             <label>
-              <input type="checkbox" :checked="todo.completed" @change="handle(todo.id)"/>
+              <!-- <input type="checkbox" :checked="todo.completed" @change="handle(todo.id)"/> -->
+               <el-checkbox :value="todo.completed" @change="handle(todo.id)"></el-checkbox>
               <span v-show="!todo.isEdit">{{todo.title}}</span>
               <input type="text" :value="todo.title" v-show="todo.isEdit" @blur="handleBlur(todo,$event)" ref="edit">
             </label>
-            <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
-            <button class="btn btn-edit" @click="handleEdit(todo)" v-show="!todo.isEdit">编辑</button>
+<!--        <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
+            <button class="btn btn-edit" @click="handleEdit(todo)" v-show="!todo.isEdit">编辑</button> -->
+            <el-button type="primary" icon="el-icon-delete" size="mini" @click="handleDelete(todo.id)" class="btn-edit">删除</el-button>
+            <el-button type="primary" icon="el-icon-edit" size="mini" @click="handleEdit(todo)" v-show="!todo.isEdit" class="btn-edit">编辑</el-button>
           </li>
       </transition>
 </template>
