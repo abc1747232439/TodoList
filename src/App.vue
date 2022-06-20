@@ -7,6 +7,9 @@
         <MyFooter :list="list"  @clearTodo="clearTodo"></MyFooter> <!-- Myfooter.vue -->
       </div>
     </div>
+    <footer>
+      <a href="https://beian.miit.gov.cn">宁ICP备2022000828号-1</a>
+    </footer>
   </div>
 </template>
 
@@ -49,7 +52,6 @@ export default {
     let pubId = pubsub.subscribe("deleteTodo",this.deleteTodo);
     this.$bus.$on("updateTodo",this.updateTodo);
     this.$bus.$on("checkAll",this.checkAll)
-    console.log(this);
   },
   beforeDestroy() {
     this.$bus.$off("checkTodo",this.checkTodo);
@@ -103,26 +105,27 @@ export default {
 
 body {
   font-family: "Exo 2", sans-serif;
-  background: rgb(63, 161, 251);
   background: linear-gradient(
     142deg,
     rgba(63, 161, 251, 1) 0%,
     rgba(252, 70, 168, 1) 100%
   );
-  width: 100%;
-  height: 100%;
-}
-html {
-  width: 100%;
-  height: 100%;
-}
-  
+  font-size: 14px;
+
+}  
+   a{
+    text-decoration: none;
+    color: #fff;
+   }
 #app {
+  position: absolute;
+  top: 50%;
+  transform: translate(0,-50%);
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
   .btn {
@@ -159,12 +162,29 @@ input {
   }
 
   .todo-container {
-    width: 600px;
-    margin: 0 auto;
+    width: 500px;
   }
   .todo-container .todo-wrap {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
+  }
+  @media screen and (max-width:768px){
+       .todo-container {
+           width: 100%;
+       }
+  }
+  @media screen and (min-width:768px){
+       .todo-container {
+           width: 750px;
+       }
+       body {
+           font-size: 18px;
+       }
+  }
+   @media screen and (min-width:992px){
+       .todo-container {
+           width: 970px;
+       }
   }
 </style>
